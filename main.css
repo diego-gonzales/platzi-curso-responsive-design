@@ -1,0 +1,658 @@
+/* 
+1. Posicionamiento (static, absolute, relative, fixed)
+2. Box modael (margin, border, padding, content)
+3. Tipografía (tipos, tamaños de fuente, etc.)
+4. Estilos Visuales (box-shadow, border-radius, gradient, etc.)
+5. Otros: Reglas CSS y más
+*/
+
+:root {
+  /* Colors */
+  --bitcoin-orange: #f7931a;
+  --soft-orange: #ffe9d5;
+  --secondary-blue: #1a9af7;
+  --soft-blue: #e7f5ff;
+  --warm-black: #201e1c;
+  --black: #282623;
+  --grey: #bababa;
+  --off-white: #faf8f7;
+  --just-white: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "DM Sans", sans-serif;
+}
+
+body {
+  font-size: 1.6rem;
+}
+
+.header {
+  position: relative;
+  display: flex;
+  flex-direction: column; /* cambia lo que hace justify-content y align-items */
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 320px;
+  height: 334px;
+  text-align: center;
+  background: linear-gradient(207.8deg, #201e1c 16.69%, #f7931a 100%);
+}
+
+.header__logo {
+  width: 150px;
+  height: 24px;
+  margin-top: 60px;
+}
+
+.header-container {
+  width: 90%; /* Va a estar siempre usando un 90% entre 288px y 900px */
+  min-width: 288px;
+  max-width: 900px;
+  height: 218px;
+  margin-top: 40px;
+}
+
+.header-container__title {
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+  color: var(--just-white);
+}
+
+.header-container__paragraph {
+  margin-top: 25px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: var(--soft-orange);
+}
+
+.header-container__button {
+  position: absolute;
+  top: calc(
+    100% - 24px
+  ); /* sería en top al 100% menos la mitad del heigth del botón (48px / 2) */
+  /*left: 50%;  Con el left puedo posicionar también un elemento al centro diciéndole que vaya al 50%, osea a la mitad*/
+  left: calc(
+    50% - 114.5px
+  ); /* sería a la mitad (50%) menos la mitad del width del botón (229px / 2) */
+  /* Otra forma de posicionarlo */
+  /* top: 100%;
+	left: 50%;
+	transform: translate(-50%, -24px); */
+  display: block;
+  padding: 15px;
+  width: 229px;
+  height: 48px;
+  background-color: var(--off-white);
+  box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
+  border-radius: 4px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--black);
+}
+
+.header-container__button span {
+  display: inline-block;
+  width: 13px;
+  height: 8px;
+  margin-left: 10px;
+  background-image: url("./assets/icons/down-arrow.svg");
+}
+
+.main {
+  width: 100%;
+  min-width: 320px;
+  height: auto;
+  background-color: var(--off-white);
+  text-align: center;
+}
+
+/* Section exchange */
+.section-exchange {
+  width: 100%;
+  height: auto;
+  min-width: 320px; /* Aquí y en la mayoría de lugares donde la he puesto no sería necesario ya que hereda el 'min-heigth' de la etiqueta <main> que también es 320px */
+  padding-top: 80px;
+  padding-bottom: 30px;
+}
+
+.section-exchange__image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  background-image: url("./assets/images/Bitcoin.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.section-exchange-header {
+  width: 90%;
+  min-width: 288px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.section-exchange-header__title {
+  margin-bottom: 30px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+  color: var(--warm-black);
+}
+
+.section-exchange-header__description {
+  margin-bottom: 30px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  color: #757575;
+}
+
+.section-exchange-tables {
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  max-width: 750px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory; /* Propiedad que va de la mano con 'scroll-snap-align' del elemento hijo */
+  padding: 0 40px;
+}
+
+.section-exchange-tables-container {
+  /* position: relative; for icon-arrows */
+  /* Propiedad que va de la mano con 'scroll-snap-type' del elemento padre. Funciona por sí sola enfocando el scroll siempre
+  en la posición que se le indique */
+  scroll-snap-align: center;
+  width: 70%;
+  min-width: 235px;
+  max-width: 500px;
+  height: 360px;
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+}
+
+.section-exchange-tables-container__title--currency {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 2.3rem;
+  color: var(--bitcoin-orange);
+}
+
+.section-exchange-tables-container-table {
+  width: 90%;
+  min-width: 230px;
+  max-width: 300px;
+  height: 250px;
+  margin: 0 auto;
+}
+
+.section-exchange-tables-container-table table {
+  width: 100%;
+  height: 100%;
+}
+
+.section-exchange-tables-container-table td {
+  width: 50%;
+  font-weight: 500;
+  line-height: 1.9rem;
+  color: var(--grey);
+  background-color: var(--just-white);
+}
+
+.section-exchange-tables-container-table .border-top-left,
+.section-exchange-tables-container-table--grid .border-top-left {
+  border-radius: 15px 0 0 0;
+}
+
+.section-exchange-tables-container-table .border-top-right,
+.section-exchange-tables-container-table--grid .border-top-right {
+  border-radius: 0 15px 0 0;
+}
+
+.section-exchange-tables-container-table .border-bottom-left,
+.section-exchange-tables-container-table--grid .border-bottom-left {
+  border-radius: 0 0 0 15px;
+}
+
+.section-exchange-tables-container-table .border-bottom-right,
+.section-exchange-tables-container-table--grid .border-bottom-right {
+  border-radius: 0 0 15px 0;
+}
+
+.section-exchange-tables-container-table .column-right,
+.section-exchange-tables-container-table--grid .column-right {
+  font-size: 1.4rem;
+  font-weight: normal;
+  line-height: 1.7rem;
+  color: #757575;
+}
+
+.section-exchange-tables-container-table .icon-arrow-down,
+.section-exchange-tables-container-table--grid .icon-arrow-down {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+  background-image: url("./assets/icons/trending-down.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section-exchange-tables-container-table .icon-arrow-up,
+.section-exchange-tables-container-table--grid .icon-arrow-up {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 10px;
+  background-image: url("./assets/icons/trending-up.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section-exchange-tables-container-footer--currency {
+  width: 190px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 8px;
+  background-color: var(--soft-orange);
+  border-radius: 8px;
+}
+
+.section-exchange-tables-container-footer--currency p {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: var(--warm-black);
+}
+
+.section-exchange-tables-container-table--grid {
+  width: 90%;
+  min-width: 230px;
+  max-width: 300px;
+  height: 250px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.1em;
+}
+
+.section-exchange-tables-container-table--grid div {
+  /* border: 0.5px solid; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--grey);
+  background-color: var(--just-white);
+}
+
+.section-exchange-tables-container__title--commissions {
+  margin-bottom: 15px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 2.3rem;
+  color: var(--secondary-blue);
+}
+
+.section-exchange-tables-container-footer--commissions {
+  width: 190px;
+  height: 30px;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 8px;
+  background-color: var(--soft-blue);
+  border-radius: 8px;
+}
+
+.section-exchange-tables-container-footer--commissions p {
+  font-size: 1.2rem;
+  line-height: 1.6rem;
+  color: var(--warm-black);
+}
+
+/* .icon-arrow-right {
+  position: absolute;
+  left: 105%;
+  top: 43.5%;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url("/assets/icons/right-arrow.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.icon-arrow-left {
+  position: absolute;
+  right: 105%;
+  top: 43.5%;
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-image: url("/assets/icons/left-arrow.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+} */
+
+/* Section products */
+.section-products {
+  position: relative;
+  width: 100%;
+  height: auto;
+  min-width: 320px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  background-color: var(--warm-black);
+}
+
+.section-products__icon-patata {
+  position: absolute;
+  /* top: -12.5px; */
+  /* bottom: calc(100% - 12.5px);
+  left: calc(50% - 20px); */
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 25px;
+  background-image: url("./assets/icons/batata.svg");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section-products-header {
+  margin: 0 auto;
+  width: 90%;
+  min-width: 288px;
+  max-width: 900px;
+}
+
+.section-products-header__title {
+  margin-bottom: 30px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+  color: var(--just-white);
+}
+
+.section-products-header__description {
+  margin-bottom: 30px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  color: #808080;
+}
+
+.section-products-cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1em;
+}
+
+.card {
+  margin: 0 auto;
+  width: 70%;
+  min-width: 288px;
+  max-width: 500px;
+  height: auto;
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.16);
+  background-color: var(--black);
+  text-align: left;
+}
+
+.card__icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 10px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.icon-clock {
+  background-image: url("./assets/icons/clock.svg");
+}
+
+.icon-eye {
+  background-image: url("./assets/icons/eye.svg");
+}
+
+.icon-dollar {
+  background-image: url("./assets/icons/dollar-sign.svg");
+}
+
+.icon-check {
+  background-image: url("./assets/icons/check-circle.svg");
+}
+
+.card__title {
+  margin-bottom: 10px;
+  font-size: 1.8rem;
+  font-weight: bold;
+  line-height: 1.8rem;
+  color: var(--just-white);
+}
+
+.card__description {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  color: #808080;
+}
+
+/* Section Girl */
+.section-girl-img {
+  position: relative; /* for title of image */
+  width: 100%;
+  min-width: 320px;
+  height: 60vh; /* oséa la mitad del vh que se tiene en ese momento, por ejemplo de 800px de heigth serí 420px */
+  background-image: url("./assets/images/bitcoinbaby2x.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.section-girl-img__title {
+  position: absolute;
+  left: 50%;
+  top: 15%;
+  transform: translate(-50%);
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+  color: var(--just-white);
+}
+
+/* Section Plans */
+.section-plans {
+  width: 100%;
+  min-width: 320px; /* Aquí y en la mayoría de lugares donde la he puesto no sería necesario ya que hereda el 'min-heigth' de la etiqueta <main> que también es 320px */
+  padding: 50px 0;
+}
+
+.section-plans-header {
+  width: 90%;
+  margin: 0 auto;
+  min-width: 288px;
+  max-width: 900px;
+}
+
+.section-plans-header__title {
+  margin-bottom: 30px;
+  font-size: 2.4rem;
+  font-weight: bold;
+  line-height: 2.6rem;
+  color: var(--warm-black);
+}
+
+.section-plans-header__description {
+  margin-bottom: 25px;
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  color: #757575;
+}
+
+/* Styles for slide in cards */
+.section-plan-cards {
+  margin: 0 auto;
+  display: flex;
+  gap: 10px;
+  max-width: 900px;
+  overflow-x: auto; /* Si le pongo 'scroll' aparece siempre el scroll */
+  overscroll-behavior: contain; /* Al colocarlo como 'contain' no me deja hacer scroll general, tener en cuenta eso */
+  scroll-snap-type: x mandatory; /* Propiedad que va de la mano con 'scroll-snap-align' del elemento hijo */
+  padding: 0 40px;
+}
+
+.plan-card {
+  position: relative;
+  /* Propiedad que va de la mano con 'scroll-snap-type' del elemento padre. Funciona por sí sola enfocando el scroll siempre
+  en la posición que se le indique */
+  scroll-snap-align: center;
+  margin: 20px auto;
+  width: 70%;
+  min-width: 235px;
+  max-width: 300px; /* para que no crezca más de esa medida y por lo tanto no se desacomode lo que tiene dentro */
+  height: auto;
+  padding: 16px;
+  background-color: var(--just-white);
+  box-shadow: 0px 4px 8px rgba(89, 73, 30, 0.16);
+  border-radius: 8px;
+}
+
+.plan-card__badge {
+  position: absolute;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 8px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  border-radius: 8px;
+  background-color: var(--bitcoin-orange);
+  color: var(--just-white);
+}
+
+.plan-card-content__title {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.6rem;
+  margin: 10px 0;
+}
+
+.plan-card-content__price {
+  margin-bottom: 10px;
+  position: relative;
+  font-family: "Inter", sans-serif;
+  font-size: 5.2rem;
+  font-weight: bold;
+  line-height: 6.2rem;
+  letter-spacing: -0.08em;
+}
+
+.plan-card-content__price span {
+  position: absolute;
+  top: 10%;
+  left: calc(50% - 40px);
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #363636;
+  /* vertical-align: text-top or X px; */ /* Serviría también en vez de usar position abosolute*/
+}
+
+.plan-card-content__description {
+  margin-bottom: 20px;
+  font-family: "Inter", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  color: #757575;
+}
+
+.plan-card-content__button {
+  padding: 12px 16px;
+  font-family: "DM Sans", sans-serif;
+  font-size: 1.4rem;
+  font-weight: bold;
+  line-height: 1.8rem;
+  border: 2px solid var(--bitcoin-orange);
+  border-radius: 4px;
+  color: var(--warm-black);
+  background-color: var(--off-white);
+}
+
+.icon-orange-arrow {
+  margin-left: 5px;
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('./assets/icons/orange-right-arrow.svg');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  min-width: 320px; /* Aquí si debe ir el min-width ya que no hereda de nadie */
+  height: 150px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  background-color: var(--bitcoin-orange);
+}
+
+.footer-links-list {
+  font-size: 1.4rem;
+  font-weight: 500;
+  line-height: 1.8rem;
+  list-style: none;
+}
+
+.footer-links-list__item {
+  margin: 5px 0;
+}
+
+.footer-links-list__item a {
+  text-decoration: none;
+  color: var(--just-white);
+}
+
+.footer-links-list__item a:hover {
+  text-decoration: underline;
+}
+
+.footer-logo {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

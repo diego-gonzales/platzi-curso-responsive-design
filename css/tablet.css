@@ -1,0 +1,16 @@
+.section-products-cards {
+  margin: 0 auto;
+  width: 90%;
+  max-width: 930px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1em;
+}
+
+.card {
+  width: 100%;
+}
+
+.section-girl-img__title {
+  top: 50%;
+}
